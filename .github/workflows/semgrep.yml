@@ -12,11 +12,6 @@ on:
   - cron: 26 14 * * *
 name: Semgrep
 
-permissions:
-  contents: read
-  security-events: write
-  actions: read
-  
 jobs:
   semgrep:
     name: semgrep/ci
