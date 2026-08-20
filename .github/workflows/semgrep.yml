@@ -22,5 +22,14 @@ jobs:
     container:
       image: semgrep/semgrep
     steps:
-    - uses: actions/checkout@v6
-    - run: semgrep ci
+    - name: checkout Semgrep
+      uses: actions/checkout@v6
+
+    - name: run Semgrep
+      run: semgrep ci --sarif --sarif-output=semgrep.sarif
+      
+    - name: upload
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: semgrep.sarif
